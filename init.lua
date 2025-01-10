@@ -624,9 +624,40 @@ require('lazy').setup({
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
-        -- ts_ls = {},
-        --
-
+        rust_analyzer = {},
+        css_variables = {},
+        volar = {
+          init_options = {
+            typescript = {
+              tsdk = '/usr/lib/node_modules/typescript-language-server/lib',
+            },
+          },
+        },
+        ts_ls = {
+          init_options = {
+            plugins = {
+              {
+                name = '@vue/typescript-plugin',
+                location = '/usr/lib/node_modules/@vue/typescript-plugin',
+                languages = { 'javascript', 'typescript', 'vue' },
+              },
+            },
+          },
+          filetypes = {
+            'typescript',
+            'javascript',
+            'vue',
+          },
+        },
+        eslint = {
+          on_attach = function(client, bufnr)
+            vim.api.nvim_create_autocmd('BufWritePre', {
+              buffer = bufnr,
+              command = 'EslintFixAll',
+            })
+          end,
+        },
+        phpactor = {},
         lua_ls = {
           -- cmd = {...},
           -- filetypes = { ...},
@@ -897,7 +928,7 @@ require('lazy').setup({
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
+      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'rust', 'css', 'vue', 'twig' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
@@ -907,7 +938,7 @@ require('lazy').setup({
         --  the list of additional_vim_regex_highlighting and disabled languages for indent.
         additional_vim_regex_highlighting = { 'ruby' },
       },
-      indent = { enable = true, disable = { 'ruby' } },
+      indent = { enable = true, disable = { 'ruby', 'css' } },
     },
     -- There are additional nvim-treesitter modules that you can use to interact
     -- with nvim-treesitter. You should go explore a few and see what interests you:
@@ -965,5 +996,12 @@ require('lazy').setup({
   },
 })
 require 'custom.nav'
+-- require 'nvim_mode_leds'
+-- vim.api.nvim_create_autocmd('ModeChanged', {
+--   callback = function(args)
+--     print('ModeChanged Event: ', args.match)
+--     -- return false
+--   end,
+-- })
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
