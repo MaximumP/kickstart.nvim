@@ -629,6 +629,7 @@ require('lazy').setup({
         emmet_language_server = {
           init_options = {
             filetypes = { 'css', 'eruby', 'html', 'javascript', 'javascriptreact', 'less', 'sass', 'scss', 'pug', 'typescriptreact', 'twig' },
+            excludeLanguages = { 'vue' },
           },
         },
         rust_analyzer = {},

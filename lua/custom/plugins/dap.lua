@@ -12,12 +12,60 @@ return {
       {
         type = 'php',
         request = 'launch',
-        name = 'Listen for Xdebug',
+        name = 'Portal',
         port = 9003,
         pathMappings = {
           ['/app'] = '/home/max/PhpstormProjects/portal/',
         },
       },
+      -- {
+      --   name = 'Portal PHPUnit',
+      --   type = 'php',
+      --   request = 'launch',
+      --   program = '/app/bin/phpunit',
+      --   cwd = '/app',
+      --   port = 9003,
+      --   pathMappings = {
+      --     ['/app'] = '${workspaceFolder}',
+      --   },
+      -- },
     }
   end,
+  keys = {
+    {
+      '<leader>dc',
+      function()
+        require('dap').continue()
+      end,
+      desc = 'Start/Continue debuggin session',
+    },
+    {
+      '<leader>dt',
+      function()
+        require('dap').toggle_breakpoint()
+      end,
+      desc = 'Toggel breakpoint',
+    },
+    {
+      '<leader>dsi',
+      function()
+        require('dap').step_into()
+      end,
+      desc = 'Step into',
+    },
+    {
+      '<leader>dso',
+      function()
+        require('dap').step_out()
+      end,
+      desc = 'Step out',
+    },
+    {
+      '<leader>dsn',
+      function()
+        require('dap').step_into()
+      end,
+      desc = 'Step over',
+    },
+  },
 }
