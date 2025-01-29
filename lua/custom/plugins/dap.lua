@@ -18,17 +18,17 @@ return {
           ['/app'] = '/home/max/PhpstormProjects/portal/',
         },
       },
-      -- {
-      --   name = 'Portal PHPUnit',
-      --   type = 'php',
-      --   request = 'launch',
-      --   program = '/app/bin/phpunit',
-      --   cwd = '/app',
-      --   port = 9003,
-      --   pathMappings = {
-      --     ['/app'] = '${workspaceFolder}',
-      --   },
-      -- },
+      {
+        name = 'Portal PHPUnit',
+        type = 'php',
+        request = 'launch',
+        program = '/app/bin/phpunit',
+        cwd = '/app',
+        port = 9003,
+        pathMappings = {
+          ['/app'] = '${workspaceFolder}',
+        },
+      },
     }
   end,
   keys = {
